@@ -62,7 +62,7 @@ def comment():
 
 @cli.command()
 def view_comments():
-    click.echo(comments_list)
+    click.echo(str(comments_list))
 
 
 @cli.command()
