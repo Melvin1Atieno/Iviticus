@@ -24,8 +24,16 @@ def register(username, password, role):
     pass
 
 @cli.command()
-def login():
-    pass
+@click.argument('username')
+@click.argument('password')
+def login(username, password):
+    find_user = [user for user in users_list if user["username"] == username]
+    if len(find_user) != 0:
+        if find_user[0]['password'] == password:
+            session["current_user"] = username
+            return 'Hello {}, you can now add a comment'.format(username)
+        return 'Password or username doesn't match'
+    return '{}, don't have an account.format(username)
 
 
 @cli.command()
