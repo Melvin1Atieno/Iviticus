@@ -31,9 +31,12 @@ def login(username, password):
     if len(find_user) != 0:
         if find_user[0]['password'] == password:
             session["current_user"] = username
-            return 'Hello {}, you can now add a comment'.format(username)
-        return 'Password or username doesn't match'
-    return '{}, don't have an account.format(username)
+            click.echo('Hello {}, you can now add a comment'.format(username))
+            return
+        click.echo('Password or username doesn\'t match')
+        return
+    click.echo('{}, don't have an account.format(username))
+    return
 
 
 @cli.command()
