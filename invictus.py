@@ -57,7 +57,22 @@ def login(username, password):
 
 @cli.command()
 def comment():
-    pass
+    all_comments = []
+    user = {}
+    logged_in_user = login()
+
+    if not logged_in_user:
+        click.echo("You are no authorizes to comment on this post, please login")
+
+    user_input = input("Enter your comment: ")
+    try:
+        all_comments.append(user_input)
+    except Exception as e:
+        click.echo(e)
+    user.keys(logged_in_user)
+    user.values(all_comments)
+
+    return user
 
 
 @cli.command()
