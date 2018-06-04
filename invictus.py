@@ -39,9 +39,16 @@ def view_comments():
 
 
 @cli.command()
-def delete():
-    pass
-
+@click.argument(comment_id)
+def delete(comment_id):
+    for a_comment in comments_list[:]:
+        if a_comment['id'] == comment_id:
+            comments_list.remove(a_comment)
+            click.echo('Comment deleted successfully...')
+            return
+    else:
+        click.echo('Comment not found!')
+        return
 
 if __name__ == '__main__':
     cli()
