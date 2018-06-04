@@ -40,8 +40,19 @@ def register(username, password, role):
     return
 
 @cli.command()
-def login():
-    pass
+@click.argument('username')
+@click.argument('password')
+def login(username, password):
+    find_user = [user for user in users_list if user["username"] == username]
+    if len(find_user) != 0:
+        if find_user[0]['password'] == password:
+            session["current_user"] = username
+            click.echo('Hello {}, you can now add a comment'.format(username))
+            return
+        click.echo('Password or username doesn\'t match')
+        return
+    click.echo('{}, don't have an account.format(username))
+    return
 
 
 @cli.command()
