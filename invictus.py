@@ -64,7 +64,6 @@ def comment():
 def view_comments():
     click.echo(str(comments_list))
 
-
 @cli.command()
 def delete():
     pass
