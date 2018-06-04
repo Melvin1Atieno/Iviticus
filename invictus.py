@@ -51,7 +51,7 @@ def login(username, password):
             return
         click.echo('Password or username doesn\'t match')
         return
-    click.echo('{}, don\'t have an account.format(username))
+    click.echo('{}, don\'t have an account'.format(username))
     return
 
 
