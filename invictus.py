@@ -3,6 +3,8 @@ import click
 users_list = []
 comments_list = []
 
+roles = ['admin', 'regular', 'moderator']
+
 # if the user is logged in, this is where
 #  they will be stored for reference
 session = dict(current_user=None)
@@ -11,8 +13,13 @@ session = dict(current_user=None)
 def cli():
     pass
 
-def create_user():
-    pass
+def create_user(username: str, password: str, role: str):
+    user = dict(
+        username=username,
+        password=password,
+        role=role
+    )
+    return user
 
 @cli.command()
 def view_users():
@@ -20,8 +27,17 @@ def view_users():
 
 
 @cli.command()
+@click.argument('username')
+@click.argument('password')
+@click.argument('role')
 def register(username, password, role):
-    pass
+    if role not in roles:
+        click.echo('error: Role specified does not exist')
+        return
+
+    user = create_user(username, password, role)
+    click.echo(user['username']+' '+user['role'])
+    return
 
 @cli.command()
 def login():
